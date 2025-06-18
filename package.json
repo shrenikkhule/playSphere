@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "axios": "^1.7.9",
+    "caniuse-lite": "^1.0.30001723",
     "clsx": "^2.1.1",
     "framer-motion": "^12.17.3",
     "react": "^18.3.1",

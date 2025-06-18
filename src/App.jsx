@@ -7,6 +7,7 @@ import {
   Events,
   FindPlayers,
   HomePage,
+  Trainer,
   Venues,
 } from "./Pages/Index";
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="events" element={<Events />} />
             <Route path="deals" element={<Deals />} />
           </Route>
+          <Route path="trainer" element={<Trainer />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

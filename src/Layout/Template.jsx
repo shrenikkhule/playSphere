@@ -49,13 +49,15 @@ function Template() {
                   <span>Book Venues</span>
                 </a>
               </Link>
-              <a
-                href="#train"
-                className="hover:text-orange-300 font-medium flex items-center gap-1 transition"
-              >
-                <FaDumbbell className="text-base text-orange-400" />
-                <span>Train</span>
-              </a>
+              <Link to={"/trainer"}>
+                <a
+                  href="#train"
+                  className="hover:text-orange-300 font-medium flex items-center gap-1 transition"
+                >
+                  <FaDumbbell className="text-base text-orange-400" />
+                  <span>Train</span>
+                </a>
+              </Link>
             </div>
 
             {/* Auth Button */}

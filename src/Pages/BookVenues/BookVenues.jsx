@@ -47,29 +47,40 @@ function BookVenues() {
           </div>
 
           {/* Filter Buttons */}
-          <motion.div
-            className="mt-8 flex justify-center mx-8 md:justify-start gap-4 flex-wrap"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-          >
-            <Link to={"/book-venues/all"}>
-              <button className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-full shadow-md hover:scale-105 hover:shadow-lg transition uppercase">
-                Venues (608)
-              </button>
-            </Link>
-            <Link to={"/book-venues/events"}>
-              <button className="px-6 py-2 bg-gray-100 text-gray-800 font-medium rounded-full hover:bg-gray-200 transition uppercase">
-                Events (1)
-              </button>
-            </Link>
-            <Link to={"/book-venues/deals"}>
-              <button className="px-6 py-2 bg-gray-100 text-gray-800 font-medium rounded-full hover:bg-gray-200 transition uppercase">
-                Deals (2)
-              </button>
-              <Outlet />
-            </Link>
-          </motion.div>
+        </motion.div>
+        <motion.div
+          className="mt-8 flex justify-center md:justify-start mx-4 sm:mx-8 gap-3 flex-wrap"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.4 }}
+        >
+          <Link to="/book-venues/all">
+            <button className="group px-6 py-2 sm:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full shadow hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:ring-4 focus:ring-indigo-300 uppercase tracking-wide">
+              Venues{" "}
+              <span className="text-sm ml-1 group-hover:scale-110 transition">
+                (608)
+              </span>
+            </button>
+          </Link>
+
+          <Link to="/book-venues/events">
+            <button className="group px-6 py-2 sm:px-8 bg-white border border-gray-300 text-gray-800 font-semibold rounded-full hover:bg-gray-100 shadow-sm transition-all duration-300 transform hover:scale-105 focus:ring-4 focus:ring-gray-200 uppercase tracking-wide">
+              Events{" "}
+              <span className="text-sm ml-1 group-hover:scale-110 transition">
+                (1)
+              </span>
+            </button>
+          </Link>
+
+          <Link to="/book-venues/deals">
+            <button className="group px-6 py-2 sm:px-8 bg-white border border-gray-300 text-gray-800 font-semibold rounded-full hover:bg-gray-100 shadow-sm transition-all duration-300 transform hover:scale-105 focus:ring-4 focus:ring-gray-200 uppercase tracking-wide">
+              Deals{" "}
+              <span className="text-sm ml-1 group-hover:scale-110 transition">
+                (2)
+              </span>
+            </button>
+          </Link>
+          <Outlet />
         </motion.div>
       </div>
     </>

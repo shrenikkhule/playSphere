@@ -5,5 +5,15 @@ import Deals from "./BookVenues/Deals";
 import Venues from "./BookVenues/Venues";
 import Events from "./BookVenues/Events";
 import AllVenues from "./BookVenues/AllVenues";
+import Trainer from "./Train/Trainer";
 
-export { HomePage, FindPlayers, BookVenues, Deals, Venues, Events, AllVenues };
+export {
+  HomePage,
+  FindPlayers,
+  BookVenues,
+  Deals,
+  Venues,
+  Events,
+  AllVenues,
+  Trainer,
+};
