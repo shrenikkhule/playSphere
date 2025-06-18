@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import {
   FaCalendarCheck,
   FaDumbbell,
@@ -31,20 +31,24 @@ function Template() {
 
             {/* Navigation Links */}
             <div className="hidden md:flex space-x-8">
-              <a
-                href="#play"
-                className="hover:text-green-300 font-medium flex items-center gap-1 transition"
-              >
-                <FaUsers className="text-base text-green-400" />
-                <span>Find Players</span>
-              </a>
-              <a
-                href="#book"
-                className="hover:text-yellow-300 font-medium flex items-center gap-1 transition"
-              >
-                <FaCalendarCheck className="text-base text-yellow-400" />
-                <span>Book Venues</span>
-              </a>
+              <Link to={"/find-players"}>
+                <a
+                  href="#play"
+                  className="hover:text-green-300 font-medium flex items-center gap-1 transition"
+                >
+                  <FaUsers className="text-base text-green-400" />
+                  <span>Find Players</span>
+                </a>
+              </Link>
+              <Link to={"/book-venues"}>
+                <a
+                  href="#book"
+                  className="hover:text-yellow-300 font-medium flex items-center gap-1 transition"
+                >
+                  <FaCalendarCheck className="text-base text-yellow-400" />
+                  <span>Book Venues</span>
+                </a>
+              </Link>
               <a
                 href="#train"
                 className="hover:text-orange-300 font-medium flex items-center gap-1 transition"
