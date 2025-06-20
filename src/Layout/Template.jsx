@@ -63,12 +63,14 @@ function Template() {
 
             {/* Auth Button */}
             <div className="flex">
-              <button className="group flex items-center gap-2 px-5 py-2.5  text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden">
+              <Link
+                to="/login"
+                className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden"
+              >
                 <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
-                <MdSportsSoccer className="text-xl z-10" />{" "}
-                {/* Import this icon */}
+                <MdSportsSoccer className="text-xl z-10" />
                 <span className="z-10">Login/SignUp</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

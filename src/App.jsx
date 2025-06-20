@@ -1,5 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Template from "./Layout/Template";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   AllVenues,
   BookVenues,
@@ -19,6 +23,8 @@ function App() {
     // <LoaderProvider>
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Template />}>
           <Route index element={<HomePage />} />
           <Route path="find-players" element={<FindPlayers />} />
@@ -35,6 +41,7 @@ function App() {
           ></Route>
         </Route>
       </Routes>
+      <ToastContainer position="top-center" autoClose={3000} />
     </BrowserRouter>
 
     // </LoaderProvider>
