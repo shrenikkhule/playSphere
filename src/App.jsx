@@ -8,6 +8,7 @@ import {
   FindPlayers,
   HomePage,
   Trainer,
+  TrainerDetails,
   Venues,
 } from "./Pages/Index";
 
@@ -28,6 +29,10 @@ function App() {
             <Route path="deals" element={<Deals />} />
           </Route>
           <Route path="trainer" element={<Trainer />}></Route>
+          <Route
+            path="trainer-details/:id"
+            element={<TrainerDetails />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Trainer() {
   const trainers = [
     {
+      id: 1,
       name: "Sanket Kamble",
       location: "Pune, Maharashtra, India",
       type: "Adults",
@@ -13,6 +15,7 @@ function Trainer() {
         "https://playo.co/_next/image?url=https%3A%2F%2Fplayov2.gumlet.io%2Fprofiles%2F1743006993348-profilePic.jpg&w=1920&q=75",
     },
     {
+      id: 2,
       name: "Aditi Sharma",
       location: "Pune, Maharashtra, India",
       type: "Teens & Adults",
@@ -21,6 +24,7 @@ function Trainer() {
         "https://www.healthfitnessindia.in/wp-content/uploads/2016/11/LUVFITNESS-by-Personal-Fitness-Trainer-Manisha-Singh-Exercise-Nutrition-Beauty-Health-Fitness-Wellness-India-34.jpg",
     },
     {
+      id: 3,
       name: "Aditi Sharma",
       location: "Pune, Maharashtra, India",
       type: "Teens & Adults",
@@ -29,6 +33,7 @@ function Trainer() {
         "https://playo.co/_next/image?url=https%3A%2F%2Fplayov2.gumlet.io%2Fprofiles%2F1749040695924-profilePic.jpg&w=1920&q=75",
     },
     {
+      id: 4,
       name: "Rohan Mehta",
       location: "Pune, Maharashtra, India",
       type: "Kids & Adults",
@@ -40,7 +45,7 @@ function Trainer() {
 
   return (
     <>
-      <div className="w-full max-w-7xl mx-auto px-4 py-10">
+      <div className="w-full max-w-7xl mx-auto my-7 px-4 py-10 ">
         {/* Motion Heading */}
         <motion.h1
           className="text-4xl md:text-5xl font-extrabold text-gray-800 text-center"
@@ -84,38 +89,40 @@ function Trainer() {
       <div className="max-w-7xl mx-auto px-4 mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {trainers.map((trainer, index) => (
-            <motion.div
-              key={index}
-              className="bg-white w-[320px] h-[440px] rounded-2xl shadow-lg overflow-hidden relative border hover:shadow-2xl transition-all duration-300"
-              whileHover={{ scale: 1.03 }}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-            >
-              <div className="relative">
-                <img
-                  src={trainer.image}
-                  alt={trainer.name}
-                  className="w-full h-64 object-cover"
-                />
-                <span className="absolute top-3 right-3 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full shadow font-bold uppercase tracking-wide">
-                  Trainer
-                </span>
-              </div>
-              <div className="p-5 text-center space-y-2">
-                <h2 className="text-2xl font-bold text-gray-800">
-                  {trainer.name}
-                </h2>
-                <p className="text-sm text-gray-500">{trainer.location}</p>
-                <p className="text-sm text-gray-500">{trainer.type}</p>
-                <div className="flex justify-center items-center text-yellow-500 mt-2">
-                  <FaStar className="mr-1" />
-                  <span className="text-base font-medium text-gray-800">
-                    {trainer.rating}
+            <Link to={`trainer-details/${trainer.id}`}>
+              <motion.div
+                key={index}
+                className="bg-white w-[320px] h-[440px] rounded-2xl shadow-lg overflow-hidden relative border hover:shadow-2xl transition-all duration-300"
+                whileHover={{ scale: 1.03 }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <div className="relative">
+                  <img
+                    src={trainer.image}
+                    alt={trainer.name}
+                    className="w-full h-64 object-cover"
+                  />
+                  <span className="absolute top-3 right-3 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full shadow font-bold uppercase tracking-wide">
+                    Trainer
                   </span>
                 </div>
-              </div>
-            </motion.div>
+                <div className="p-5 text-center space-y-2">
+                  <h2 className="text-2xl font-bold text-gray-800">
+                    {trainer.name}
+                  </h2>
+                  <p className="text-sm text-gray-500">{trainer.location}</p>
+                  <p className="text-sm text-gray-500">{trainer.type}</p>
+                  <div className="flex justify-center items-center text-yellow-500 mt-2">
+                    <FaStar className="mr-1" />
+                    <span className="text-base font-medium text-gray-800">
+                      {trainer.rating}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

@@ -6,6 +6,7 @@ import Venues from "./BookVenues/Venues";
 import Events from "./BookVenues/Events";
 import AllVenues from "./BookVenues/AllVenues";
 import Trainer from "./Train/Trainer";
+import TrainerDetails from "./Train/TrainerDetails";
 
 export {
   HomePage,
@@ -16,4 +17,5 @@ export {
   Events,
   AllVenues,
   Trainer,
+  TrainerDetails,
 };
