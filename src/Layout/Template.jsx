@@ -87,48 +87,54 @@ function Template() {
             "radial-gradient(ellipse 80% 50% at 50% 120%, rgba(62, 61, 117), rgba(18, 18, 38))",
         }}
       >
-        <a
-          href="#home"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FaHome className="text-2xl mb-1 text-indigo-300 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Home</span>
-        </a>
-
-        <a
-          href="#play"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FaUsers className="text-2xl mb-1 text-pink-400 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Play</span>
-        </a>
-
+        <Link to={"/"}>
+          <a
+            href="#home"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FaHome className="text-2xl mb-1 text-indigo-300 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Home</span>
+          </a>
+        </Link>
+        <Link to={"/find-players"}>
+          <a
+            href="#play"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FaUsers className="text-2xl mb-1 text-pink-400 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Play</span>
+          </a>
+        </Link>
         {/* Book */}
-        <a
-          href="#book"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FaCalendarCheck className="text-2xl mb-1 text-teal-400 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Book</span>
-        </a>
-
+        <Link to={"/book-venues"}>
+          <a
+            href="#book"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FaCalendarCheck className="text-2xl mb-1 text-teal-400 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Book</span>
+          </a>
+        </Link>
         {/* Train */}
-        <a
-          href="#train"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <MdFitnessCenter className="text-2xl mb-1 text-orange-400 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Train</span>
-        </a>
-
+        <Link to={"/trainer"}>
+          <a
+            href="#train"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <MdFitnessCenter className="text-2xl mb-1 text-orange-400 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Train</span>
+          </a>
+        </Link>
         {/* Login */}
-        <a
-          href="#login"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FiLogIn className="text-2xl mb-1 text-yellow-300 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Login</span>
-        </a>
+        <Link to={"/login"}>
+          <a
+            href="#login"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FiLogIn className="text-2xl mb-1 text-yellow-300 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Login</span>
+          </a>
+        </Link>
       </div>
 
       <footer className="bg-gray-900 text-white py-12 px-6">
