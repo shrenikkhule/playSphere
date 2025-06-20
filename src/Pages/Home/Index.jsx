@@ -1,3 +1,4 @@
+import BlogSection from "./BlogSection";
 import { PopularSportsData } from "./data";
 import HeroSection from "./HeroSection";
 import HorizontalCardScroll from "./HorizontalCardScroll";
@@ -26,6 +27,7 @@ export default function Index() {
           ))}
         </div>
       </div>
+      <BlogSection></BlogSection>
       <section className="flex items-center bg-gradient-to-r from-indigo-50 to-white px-6 py-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

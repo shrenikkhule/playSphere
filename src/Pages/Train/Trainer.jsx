@@ -89,7 +89,7 @@ function Trainer() {
       <div className="max-w-7xl mx-auto px-4 mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {trainers.map((trainer, index) => (
-            <Link to={`trainer-details/${trainer.id}`}>
+            <Link to={`trainer-details`}>
               <motion.div
                 key={index}
                 className="bg-white w-[320px] h-[440px] rounded-2xl shadow-lg overflow-hidden relative border hover:shadow-2xl transition-all duration-300"

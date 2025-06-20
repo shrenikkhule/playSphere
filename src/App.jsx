@@ -36,7 +36,7 @@ function App() {
           </Route>
           <Route path="trainer" element={<Trainer />}></Route>
           <Route
-            path="trainer-details/:id"
+            path="trainer/trainer-details"
             element={<TrainerDetails />}
           ></Route>
         </Route>
