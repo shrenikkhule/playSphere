@@ -76,7 +76,7 @@ function Template() {
         </div>
       </nav>
 
-      <main className="pt-14 pb-16">
+      <main className="pt-14">
         <Outlet />
       </main>
 

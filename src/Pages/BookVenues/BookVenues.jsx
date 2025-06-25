@@ -4,6 +4,7 @@ import { MdLocationOn, MdSportsCricket } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import SportsComplexesPage from "./SportsComplexesPage";
 function BookVenues() {
   return (
     <>
@@ -83,6 +84,7 @@ function BookVenues() {
           <Outlet />
         </motion.div>
       </div>
+      <SportsComplexesPage></SportsComplexesPage>
     </>
   );
 }
