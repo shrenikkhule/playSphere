@@ -32,6 +32,8 @@ function FindPlayers() {
       address: "Laxmi Krida Mandir B...",
       distance: "2.81 Kms",
       sportLevel: "Beginner - Professional",
+      profilePic:
+        "https://www.shutterstock.com/shutterstock/photos/1422647345/display_1500/stock-vector-soccer-player-with-arms-crossed-profile-cartoon-vector-illustration-graphic-design-1422647345.jpg",
     },
     {
       id: 2,
@@ -46,6 +48,8 @@ function FindPlayers() {
       distance: "3.37 Kms",
       sportLevel: "Beginner - Professional",
       extra: "Doubles",
+      profilePic:
+        "https://i.pinimg.com/736x/43/69/3e/43693e09ff113f15f71db2c2bb5c1420.jpg",
     },
     {
       id: 3,
@@ -60,6 +64,8 @@ function FindPlayers() {
       distance: "3.48 Kms",
       sportLevel: "Intermediate - Professional",
       extra: "MH",
+      profilePic:
+        "https://i.pinimg.com/736x/43/69/3e/43693e09ff113f15f71db2c2bb5c1420.jpg",
     },
     {
       id: 4,
@@ -73,6 +79,8 @@ function FindPlayers() {
       address: "Sanas Badminton Cour...",
       distance: "3.67 Kms",
       sportLevel: "Amateur - Advance",
+      profilePic:
+        "https://i.pinimg.com/736x/43/69/3e/43693e09ff113f15f71db2c2bb5c1420.jpg",
     },
     {
       id: 5,
@@ -87,6 +95,8 @@ function FindPlayers() {
       distance: "3.67 Kms",
       sportLevel: "Amateur - Advance",
       extra: "Doubles",
+      profilePic:
+        "https://i.pinimg.com/736x/43/69/3e/43693e09ff113f15f71db2c2bb5c1420.jpg",
     },
     {
       id: 6,
@@ -102,6 +112,8 @@ function FindPlayers() {
       sportLevel: "Intermediate - Professional",
       extra: "MH",
       booking: "BOOKED",
+      profilePic:
+        "https://i.pinimg.com/736x/43/69/3e/43693e09ff113f15f71db2c2bb5c1420.jpg",
     },
     {
       id: 7,
@@ -116,6 +128,8 @@ function FindPlayers() {
       distance: "4.09 Kms",
       sportLevel: "Beginner - Professional",
       booking: "BOOKED",
+      profilePic:
+        "https://i.pinimg.com/736x/43/69/3e/43693e09ff113f15f71db2c2bb5c1420.jpg",
     },
   ];
 
