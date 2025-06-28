@@ -1,20 +1,20 @@
 import { motion } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { scrolldata } from "./data";
-
+import VanillaTilt from "vanilla-tilt";
 const HorizontalCardScroll = () => {
   const scrollRef = useRef(null);
 
-  const scroll = (direction) => {
-    const distance = 320;
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -distance : distance,
-        behavior: "smooth",
-      });
-    }
-  };
+  useEffect(() => {
+    const cards = scrollRef.current.querySelectorAll(".tilt-card");
+    VanillaTilt.init(cards, {
+      max: 10,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.2,
+    });
+  }, []);
 
   return (
     <>
@@ -31,12 +31,16 @@ const HorizontalCardScroll = () => {
         {/* Scrollable Cards */}
         <div
           ref={scrollRef}
-          className="flex space-x-5 overflow-x-auto scroll-smooth no-scrollbar pb-2"
+          className="flex space-x-5 overflow-x-auto scroll-smooth no-scrollbar pb-2 px-4"
         >
           {scrolldata.map((item, idx) => (
             <motion.div
               key={idx}
-              className="relative group min-w-[240px] sm:min-w-[260px] bg-gradient-to-tr from-white to-indigo-50 rounded-2xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300 flex-shrink-0 overflow-hidden"
+              className="tilt-card group min-w-[240px] sm:min-w-[260px] bg-gradient-to-tr from-white to-indigo-50 rounded-2xl shadow-lg hover:shadow-indigo-400 transition-all duration-300 flex-shrink-0 overflow-hidden border border-transparent hover:border-indigo-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
             >
               <img
                 src={item.img}
@@ -100,7 +104,6 @@ const HorizontalCardScroll = () => {
                 </h3>
                 <p className="text-sm text-gray-600 mt-1">{item.address}</p>
               </div>
-              
             </motion.div>
           ))}
         </div>

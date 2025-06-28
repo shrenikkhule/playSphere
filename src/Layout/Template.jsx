@@ -8,8 +8,25 @@ import {
 } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import { MdFitnessCenter, MdSportsSoccer } from "react-icons/md";
+import { useState } from "react";
+import { cities } from "./data";
 
 function Template() {
+  const [search, setSearch] = useState("");
+  const [filteredCities, setFilteredCities] = useState([]);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    if (value.trim() === "") {
+      setFilteredCities([]);
+    } else {
+      const results = cities.filter((city) =>
+        city.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredCities(results);
+    }
+  };
   return (
     <>
       <nav
@@ -21,51 +38,72 @@ function Template() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to={"/"}>
-              <div className="flex items-center space-x-2">
-                <FaMapMarkerAlt className="text-xl text-green-400" />
-                <span className="text-xl font-bold tracking-wide text-white">
-                  PlaySphere
-                </span>
+            {/* Logo & Search */}
+            <div className="flex items-center space-x-4 w-full md:w-auto">
+              <Link to="/">
+                <div className="flex items-center space-x-2">
+                  <FaMapMarkerAlt className="text-xl text-green-400" />
+                  <span className="text-xl font-bold tracking-wide text-white">
+                    PlaySphere
+                  </span>
+                </div>
+              </Link>
+
+              {/* Search Bar */}
+              <div className="relative hidden sm:block">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={handleSearchChange}
+                  placeholder="Search City"
+                  className="ml-4 px-4 py-1.5 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-green-400 shadow"
+                />
+                {filteredCities.length > 0 && (
+                  <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-md max-h-48 overflow-auto">
+                    {filteredCities.map((city, index) => (
+                      <div
+                        key={index}
+                        className="px-4 py-2 hover:bg-green-100 text-black cursor-pointer text-sm"
+                        onClick={() => {
+                          setSearch(city);
+                          setFilteredCities([]);
+                        }}
+                      >
+                        {city}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </Link>
+            </div>
 
             {/* Navigation Links */}
             <div className="hidden md:flex space-x-8">
               <Link to={"/find-players"}>
-                <a
-                  href="#play"
-                  className="hover:text-green-300 font-medium flex items-center gap-1 transition"
-                >
+                <span className="hover:text-green-300 font-medium flex items-center gap-1 transition">
                   <FaUsers className="text-base text-green-400" />
                   <span>Find Players</span>
-                </a>
+                </span>
               </Link>
               <Link to={"/book-venues"}>
-                <a
-                  href="#book"
-                  className="hover:text-yellow-300 font-medium flex items-center gap-1 transition"
-                >
+                <span className="hover:text-yellow-300 font-medium flex items-center gap-1 transition">
                   <FaCalendarCheck className="text-base text-yellow-400" />
                   <span>Book Venues</span>
-                </a>
+                </span>
               </Link>
               <Link to={"/trainer"}>
-                <a
-                  href="#train"
-                  className="hover:text-orange-300 font-medium flex items-center gap-1 transition"
-                >
+                <span className="hover:text-orange-300 font-medium flex items-center gap-1 transition">
                   <FaDumbbell className="text-base text-orange-400" />
                   <span>Train</span>
-                </a>
+                </span>
               </Link>
             </div>
 
             {/* Auth Button */}
-            <div className="flex">
+            <div className="flex ml-4">
               <Link
                 to="/login"
-                className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden"
+                className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden "
               >
                 <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
                 <MdSportsSoccer className="text-xl z-10" />

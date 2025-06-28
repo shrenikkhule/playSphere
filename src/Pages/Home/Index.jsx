@@ -32,6 +32,7 @@ export default function Index() {
           />
         </motion.div>
       </section>
+      
       <div className="p-6 ">
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 drop-shadow text-white">
           Popular Sports
