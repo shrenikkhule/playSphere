@@ -2,11 +2,6 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-<<<<<<< HEAD
-    <section className="w-full">
-
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
-=======
     <section className="w-full relative">
       {/* Fixed Background Image */}
       <div
@@ -19,7 +14,6 @@ export default function HeroSection() {
 
       {/* Foreground Content */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative z-10">
->>>>>>> 6d82c06a62d2c12e013f53f0fccaeba49ba6b95b
         {/* Left Content */}
         <motion.div
           className="w-full md:max-w-xl text-center md:text-left"

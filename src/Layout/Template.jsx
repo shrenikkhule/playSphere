@@ -100,7 +100,7 @@ function Template() {
             </div>
 
             {/* Auth Button */}
-<<<<<<< HEAD
+
 
             <div className="flex">
               <Link
@@ -119,20 +119,21 @@ function Template() {
                 <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
                 <MdSportsSoccer className="text-xl z-10" />
                 <span className="z-10">Login</span>
-
-=======
-            <div className="flex ml-4">
-              <Link
-                to="/login"
-                className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden "
-              >
-                <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
-                <MdSportsSoccer className="text-xl z-10" />
-                <span className="z-10">Login/SignUp</span>
->>>>>>> 6d82c06a62d2c12e013f53f0fccaeba49ba6b95b
               </Link>
-            </div>
 
+              {/* <div className="flex ml-4">
+                <Link
+                  to="/login"
+                  className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden "
+                >
+                  <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
+                  <MdSportsSoccer className="text-xl z-10" />
+                  <span className="z-10">Login/SignUp</span>
+
+                </Link>
+              </div> */}
+
+            </div>
           </div>
         </div>
       </nav>
@@ -248,7 +249,7 @@ function Template() {
         </div>
       </footer>
     </>
-  );
+  )
 }
 
 export default Template;
