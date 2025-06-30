@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="w-full">
+
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
         {/* Left Content */}
         <motion.div
