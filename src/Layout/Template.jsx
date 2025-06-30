@@ -8,8 +8,25 @@ import {
 } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import { MdFitnessCenter, MdSportsSoccer } from "react-icons/md";
+import { useState } from "react";
+import { cities } from "./data";
 
 function Template() {
+  const [search, setSearch] = useState("");
+  const [filteredCities, setFilteredCities] = useState([]);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    if (value.trim() === "") {
+      setFilteredCities([]);
+    } else {
+      const results = cities.filter((city) =>
+        city.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredCities(results);
+    }
+  };
   return (
     <>
       <nav
@@ -21,40 +38,69 @@ function Template() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <FaMapMarkerAlt className="text-xl text-green-400" />
-              <span className="text-xl font-bold tracking-wide text-white">
-                PlaySphere
-              </span>
+            {/* Logo & Search */}
+            <div className="flex items-center space-x-4 w-full md:w-auto">
+              <Link to="/">
+                <div className="flex items-center space-x-2">
+                  <FaMapMarkerAlt className="text-xl text-green-400" />
+                  <span className="text-xl font-bold tracking-wide text-white">
+                    PlaySphere
+                  </span>
+                </div>
+              </Link>
+
+              {/* Search Bar */}
+              <div className="relative hidden sm:block">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={handleSearchChange}
+                  placeholder="Search City"
+                  className="ml-4 px-4 py-1.5 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-green-400 shadow"
+                />
+                {filteredCities.length > 0 && (
+                  <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-md max-h-48 overflow-auto">
+                    {filteredCities.map((city, index) => (
+                      <div
+                        key={index}
+                        className="px-4 py-2 hover:bg-green-100 text-black cursor-pointer text-sm"
+                        onClick={() => {
+                          setSearch(city);
+                          setFilteredCities([]);
+                        }}
+                      >
+                        {city}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Navigation Links */}
             <div className="hidden md:flex space-x-8">
-              <a
-                href="#play"
-                className="hover:text-green-300 font-medium flex items-center gap-1 transition"
-              >
-                <FaUsers className="text-base text-green-400" />
-                <span>Find Players</span>
-              </a>
-              <a
-                href="#book"
-                className="hover:text-yellow-300 font-medium flex items-center gap-1 transition"
-              >
-                <FaCalendarCheck className="text-base text-yellow-400" />
-                <span>Book Venues</span>
-              </a>
-              <a
-                href="#train"
-                className="hover:text-orange-300 font-medium flex items-center gap-1 transition"
-              >
-                <FaDumbbell className="text-base text-orange-400" />
-                <span>Train</span>
-              </a>
+              <Link to={"/find-players"}>
+                <span className="hover:text-green-300 font-medium flex items-center gap-1 transition">
+                  <FaUsers className="text-base text-green-400" />
+                  <span>Find Players</span>
+                </span>
+              </Link>
+              <Link to={"/book-venues"}>
+                <span className="hover:text-yellow-300 font-medium flex items-center gap-1 transition">
+                  <FaCalendarCheck className="text-base text-yellow-400" />
+                  <span>Book Venues</span>
+                </span>
+              </Link>
+              <Link to={"/trainer"}>
+                <span className="hover:text-orange-300 font-medium flex items-center gap-1 transition">
+                  <FaDumbbell className="text-base text-orange-400" />
+                  <span>Train</span>
+                </span>
+              </Link>
             </div>
 
             {/* Auth Button */}
+<<<<<<< HEAD
 
             <div className="flex">
               <Link
@@ -74,6 +120,16 @@ function Template() {
                 <MdSportsSoccer className="text-xl z-10" />
                 <span className="z-10">Login</span>
 
+=======
+            <div className="flex ml-4">
+              <Link
+                to="/login"
+                className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden "
+              >
+                <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
+                <MdSportsSoccer className="text-xl z-10" />
+                <span className="z-10">Login/SignUp</span>
+>>>>>>> 6d82c06a62d2c12e013f53f0fccaeba49ba6b95b
               </Link>
             </div>
 
@@ -81,7 +137,7 @@ function Template() {
         </div>
       </nav>
 
-      <main className="pt-14 pb-16">
+      <main className="pt-14">
         <Outlet />
       </main>
 
@@ -92,48 +148,54 @@ function Template() {
             "radial-gradient(ellipse 80% 50% at 50% 120%, rgba(62, 61, 117), rgba(18, 18, 38))",
         }}
       >
-        <a
-          href="#home"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FaHome className="text-2xl mb-1 text-indigo-300 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Home</span>
-        </a>
-
-        <a
-          href="#play"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FaUsers className="text-2xl mb-1 text-pink-400 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Play</span>
-        </a>
-
+        <Link to={"/"}>
+          <a
+            href="#home"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FaHome className="text-2xl mb-1 text-indigo-300 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Home</span>
+          </a>
+        </Link>
+        <Link to={"/find-players"}>
+          <a
+            href="#play"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FaUsers className="text-2xl mb-1 text-pink-400 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Play</span>
+          </a>
+        </Link>
         {/* Book */}
-        <a
-          href="#book"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FaCalendarCheck className="text-2xl mb-1 text-teal-400 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Book</span>
-        </a>
-
+        <Link to={"/book-venues"}>
+          <a
+            href="#book"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FaCalendarCheck className="text-2xl mb-1 text-teal-400 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Book</span>
+          </a>
+        </Link>
         {/* Train */}
-        <a
-          href="#train"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <MdFitnessCenter className="text-2xl mb-1 text-orange-400 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Train</span>
-        </a>
-
+        <Link to={"/trainer"}>
+          <a
+            href="#train"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <MdFitnessCenter className="text-2xl mb-1 text-orange-400 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Train</span>
+          </a>
+        </Link>
         {/* Login */}
-        <a
-          href="#login"
-          className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
-        >
-          <FiLogIn className="text-2xl mb-1 text-yellow-300 drop-shadow-md" />
-          <span className="text-[11px] font-medium">Login</span>
-        </a>
+        <Link to={"/login"}>
+          <a
+            href="#login"
+            className="flex flex-col items-center justify-center text-xs hover:text-yellow-400 transition-transform transform hover:scale-110"
+          >
+            <FiLogIn className="text-2xl mb-1 text-yellow-300 drop-shadow-md" />
+            <span className="text-[11px] font-medium">Login</span>
+          </a>
+        </Link>
       </div>
 
       <footer className="bg-gray-900 text-white py-12 px-6">

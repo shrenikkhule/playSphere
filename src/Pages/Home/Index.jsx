@@ -1,3 +1,5 @@
+import BlogSection from "./BlogSection";
+import { motion } from "framer-motion";
 import { PopularSportsData } from "./data";
 import HeroSection from "./HeroSection";
 import HorizontalCardScroll from "./HorizontalCardScroll";
@@ -7,9 +9,38 @@ export default function Index() {
     <>
       <HeroSection></HeroSection>
       <HorizontalCardScroll></HorizontalCardScroll>
+<<<<<<< HEAD
       <div className="p-6 bg-gradient-to-r from-indigo-50 to-white  ">
 
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 drop-shadow">
+=======
+
+      <section className="w-full relative">
+        <motion.div
+          className="fixed top-32 right-10 z-50 hidden sm:block"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          <motion.img
+            src="/pngfind.com-basketball.png"
+            alt="Sports Illustration"
+            className="w-32 h-40"
+            whileHover={{ scale: 1.05 }}
+            animate={{ y: [0, -30, 0] }}
+            transition={{
+              repeat: Infinity,
+              duration: 2,
+              ease: "easeInOut",
+              repeatType: "loop",
+            }}
+          />
+        </motion.div>
+      </section>
+      
+      <div className="p-6 ">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 drop-shadow text-white">
+>>>>>>> 6d82c06a62d2c12e013f53f0fccaeba49ba6b95b
           Popular Sports
         </h2>
 
@@ -27,6 +58,7 @@ export default function Index() {
           ))}
         </div>
       </div>
+      <BlogSection></BlogSection>
       <section className="flex items-center bg-gradient-to-r from-indigo-50 to-white px-6 py-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
