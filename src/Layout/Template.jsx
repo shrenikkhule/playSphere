@@ -10,7 +10,6 @@ import { FiLogIn } from "react-icons/fi";
 import { MdFitnessCenter, MdSportsSoccer } from "react-icons/md";
 import { useState } from "react";
 import { cities } from "./data";
-
 function Template() {
   const [search, setSearch] = useState("");
   const [filteredCities, setFilteredCities] = useState([]);
@@ -101,7 +100,6 @@ function Template() {
 
             {/* Auth Button */}
 
-
             <div className="flex">
               <Link
                 to="/register"
@@ -110,7 +108,6 @@ function Template() {
                 <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
                 <MdSportsSoccer className="text-xl z-10" />
                 <span className="z-10">SignUp</span>
-
               </Link>
               <Link
                 to="/login"
@@ -132,7 +129,6 @@ function Template() {
 
                 </Link>
               </div> */}
-
             </div>
           </div>
         </div>
@@ -249,7 +245,190 @@ function Template() {
         </div>
       </footer>
     </>
-  )
+  );
 }
 
 export default Template;
+
+// const ProfileModal = ({ isOpen, onClose }) => {
+//   // Placeholder user data
+//   const userData = {
+//     profilePhoto: "https://placehold.co/150x150/000000/FFFFFF?text=Profile", // Placeholder image
+//     name: "Alex 'The Ace' Johnson",
+//     address: "789 Victory Lane, Stadium City, CA 90210",
+//     mobile: "+1 (555) 987-6543",
+//     gender: "Non-Binary",
+//   };
+
+//   const modalRef = useRef(null);
+
+//   // Close modal when clicking outside of it
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (modalRef.current && !modalRef.current.contains(event.target)) {
+//         onClose();
+//       }
+//     };
+
+//     if (isOpen) {
+//       document.addEventListener("mousedown", handleClickOutside);
+//     } else {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     }
+
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, [isOpen, onClose]);
+
+//   // Handle escape key to close modal
+//   useEffect(() => {
+//     const handleEscapeKey = (event) => {
+//       if (event.key === "Escape") {
+//         onClose();
+//       }
+//     };
+
+//     if (isOpen) {
+//       document.addEventListener("keydown", handleEscapeKey);
+//     } else {
+//       document.removeEventListener("keydown", handleEscapeKey);
+//     }
+
+//     return () => {
+//       document.removeEventListener("keydown", handleEscapeKey);
+//     };
+//   }, [isOpen, onClose]);
+
+//   // Conditional rendering for animations
+//   if (!isOpen) return null;
+
+//   return (
+//     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 animate-fade-in">
+//       <style>
+//         {`
+//         @keyframes fade-in {
+//           from { opacity: 0; }
+//           to { opacity: 1; }
+//         }
+//         @keyframes slide-down {
+//           from { transform: translateY(-50px); opacity: 0; }
+//           to { transform: translateY(0); opacity: 1; }
+//         }
+//         .animate-fade-in {
+//           animation: fade-in 0.3s ease-out forwards;
+//         }
+//         .animate-slide-down {
+//           animation: slide-down 0.4s ease-out forwards;
+//         }
+//         `}
+//       </style>
+//       <div
+//         ref={modalRef}
+//         className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform animate-slide-down
+//                    transition-all duration-300 ease-in-out border-4 border-blue-500 relative"
+//       >
+//         {/* Close button */}
+//         <button
+//           onClick={onClose}
+//           className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold transition-transform duration-200 transform hover:rotate-90 focus:outline-none"
+//           aria-label="Close modal"
+//         >
+//           &times;
+//         </button>
+
+//         <div className="flex flex-col items-center mb-6">
+//           {/* Profile Photo */}
+//           <img
+//             src={userData.profilePhoto}
+//             alt="Profile"
+//             className="w-32 h-32 rounded-full object-cover border-4 border-indigo-400 shadow-md mb-4 transform hover:scale-105 transition-transform duration-300"
+//             onError={(e) => {
+//               e.target.onerror = null;
+//               e.target.src =
+//                 "https://placehold.co/150x150/CCCCCC/333333?text=No+Image";
+//             }}
+//           />
+//           <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center">
+//             {userData.name}
+//           </h2>
+//           <p className="text-md text-gray-600 font-medium bg-blue-100 px-3 py-1 rounded-full">
+//             Athlete Profile
+//           </p>
+//         </div>
+
+//         {/* User Details */}
+//         <div className="space-y-4">
+//           <div className="flex items-center bg-gray-50 p-3 rounded-lg shadow-sm">
+//             <svg
+//               className="w-6 h-6 text-blue-500 mr-3"
+//               fill="none"
+//               stroke="currentColor"
+//               viewBox="0 0 24 24"
+//               xmlns="http://www.w3.org/2000/svg"
+//             >
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth="2"
+//                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+//               ></path>
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth="2"
+//                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+//               ></path>
+//             </svg>
+//             <div>
+//               <p className="text-sm font-semibold text-gray-700">Address:</p>
+//               <p className="text-md text-gray-800">{userData.address}</p>
+//             </div>
+//           </div>
+
+//           <div className="flex items-center bg-gray-50 p-3 rounded-lg shadow-sm">
+//             <svg
+//               className="w-6 h-6 text-green-500 mr-3"
+//               fill="none"
+//               stroke="currentColor"
+//               viewBox="0 0 24 24"
+//               xmlns="http://www.w3.org/2000/svg"
+//             >
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth="2"
+//                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684L10.5 9.25a1 1 0 001.07 1.07l3.776 1.076a1 1 0 001.07-.948l.582-2.915a1 1 0 01.684-.949H19a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
+//               ></path>
+//             </svg>
+//             <div>
+//               <p className="text-sm font-semibold text-gray-700">Mobile:</p>
+//               <p className="text-md text-gray-800">{userData.mobile}</p>
+//             </div>
+//           </div>
+
+//           <div className="flex items-center bg-gray-50 p-3 rounded-lg shadow-sm">
+//             <svg
+//               className="w-6 h-6 text-purple-500 mr-3"
+//               fill="none"
+//               stroke="currentColor"
+//               viewBox="0 0 24 24"
+//               xmlns="http://www.w3.org/2000/svg"
+//             >
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth="2"
+//                 d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 14c-1.49 0-2.924.408-4.212 1.144A10.04 10.04 0 0012 18c1.49 0 2.924-.408 4.212-1.144A10.04 10.04 0 0012 14z"
+//               ></path>
+//             </svg>
+//             <div>
+//               <p className="text-sm font-semibold text-gray-700">Gender:</p>
+//               <p className="text-md text-gray-800">{userData.gender}</p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };

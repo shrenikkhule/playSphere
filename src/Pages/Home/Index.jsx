@@ -9,9 +9,8 @@ export default function Index() {
     <>
       <HeroSection></HeroSection>
       <HorizontalCardScroll></HorizontalCardScroll>
-      <div className="p-6 bg-gradient-to-r from-indigo-50 to-white  ">
-
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 drop-shadow">
+      <div className="p-6 backdrop-blur-xs">
+        <h2 className="text-3xl sm:text-5xl font-bold text-white text-center mb-12 drop-shadow">
           Popular Sports
         </h2>
 
