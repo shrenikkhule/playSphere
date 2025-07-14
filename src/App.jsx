@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,8 +12,6 @@ import PlayerDashboard from "./Pages/Dashboard/PlayerDashboard";
 import OwnerDashboard from "./Pages/Dashboard/OwnerDashboard";
 import AcademyDashboard from "./Pages/Dashboard/AcademyDashboard";
 
-
-
 import "react-toastify/dist/ReactToastify.css";
 import {
   AllVenues,
@@ -27,6 +24,8 @@ import {
   TrainerDetails,
   Venues,
 } from "./Pages/Index";
+import DashboardPage from "./Pages/Dashboard/DashboardPage";
+import ProfilePage from "./Pages/Dashboard/Components/ProfilePage";
 
 function App() {
   // const user = JSON.parse(localStorage.getItem("user"));
@@ -38,12 +37,15 @@ function App() {
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/turf owner" element={<OwnerDashboard />} />
-          <Route path="/academies" element={<AcademyDashboard />} />
-          <Route path="/player" element={<PlayerDashboard />} />
-          <Route path="/coach" element={<CoachDashboard />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-
+          {/* Dashboard routes  */}
+          <Route path="dashboard" element={<DashboardPage />}>
+            <Route path="admin" element={<AdminDashboard />} />
+            <Route path="turf owner" element={<OwnerDashboard />} />
+            <Route path="academies" element={<AcademyDashboard />} />
+            <Route path="player" element={<PlayerDashboard />} />
+            <Route path="coach" element={<CoachDashboard />} />
+            <Route path="profile" element={<ProfilePage />} />
+          </Route>
 
           {/* Nested routes inside layout */}
           <Route path="/" element={<Template />}>
@@ -78,39 +80,6 @@ function App() {
         />
       </BrowserRouter>
     </LoaderProvider>
-
-
-
-    // import { LoaderProvider } from "./LoaderContext";
-
-    // function App() {
-    //     return (
-    //       // <LoaderProvider>
-    //       <BrowserRouter>
-    //         <Routes>
-    //           <Route path="/login" element={<Login />} />
-    //           <Route path="/register" element={<Register />} />
-    //           <Route path="/" element={<Template />}>
-    //             <Route index element={<HomePage />} />
-    //             <Route path="find-players" element={<FindPlayers />} />
-    //             <Route path="book-venues" element={<BookVenues />}>
-    //               <Route index element={<AllVenues />} />
-    //               <Route path="all" element={<Venues />} />
-    //               <Route path="events" element={<Events />} />
-    //               <Route path="deals" element={<Deals />} />
-    //             </Route>
-    //             <Route path="trainer" element={<Trainer />}></Route>
-    //             <Route
-    //               path="trainer/trainer-details"
-    //               element={<TrainerDetails />}
-    //             ></Route>
-    //           </Route>
-    //         </Routes>
-    //         <ToastContainer position="top-center" autoClose={3000} />
-    //       </BrowserRouter>
-
-    // </LoaderProvider>
-
   );
 }
 

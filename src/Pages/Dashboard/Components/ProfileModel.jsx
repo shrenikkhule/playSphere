@@ -13,7 +13,7 @@ const ProfileModal = ({
 }) => {
   const userData = {
     profilePhoto:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6qIivAq9P3NUfmSK7jgnujOpYPFN2fcELqg&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoBcCsvhzlZTxdGR0gSP0fR8I1IG1JegGqfQ&s",
     name: name,
     address: address,
     mobile: phone,

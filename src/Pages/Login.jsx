@@ -47,19 +47,19 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(user));
       switch (user.role) {
         case "admin":
-          navigate("/admin");
+          navigate("/dashboard/admin");
           break;
         case "player":
-          navigate("/player");
+          navigate("/dashboard/player");
           break;
         case "coach":
-          navigate("/coach");
+          navigate("/dashboard/coach");
           break;
         case "turf owner":
-          navigate("/turf owner");
+          navigate("/dashboard/turf owner");
           break;
         case "academies":
-          navigate("/academies");
+          navigate("/dashboard/academies");
           break;
         default:
           navigate("/");

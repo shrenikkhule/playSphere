@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { FaGooglePlay, FaStar } from "react-icons/fa";
-import { MdLocationOn, MdSportsCricket } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
@@ -46,8 +44,6 @@ function BookVenues() {
               </select>
             </div>
           </div>
-
-          {/* Filter Buttons */}
         </motion.div>
         <motion.div
           className="mt-8 flex justify-center md:justify-start mx-4 sm:mx-8 gap-3 flex-wrap"

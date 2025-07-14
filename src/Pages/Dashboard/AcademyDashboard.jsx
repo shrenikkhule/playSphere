@@ -1,13 +1,10 @@
-import React from 'react'
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from '../../redux/slice/UserSlice';
-import { useNavigate } from 'react-router-dom';
-
-
-
+import { logout } from "../../redux/slice/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 const AcademyDashboard = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loggedInUser } = useSelector((state) => state.user);
 
@@ -33,8 +30,7 @@ const AcademyDashboard = () => {
         )}
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default AcademyDashboard
+export default AcademyDashboard;
