@@ -20,6 +20,7 @@ import { CgProfile } from "react-icons/cg";
 import { Menu, LogOut, Moon, Sun, Bell } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProfileModal from "./Components/ProfileModel";
+import { useDarkMode } from "./Components/DarkModeProvider";
 
 // NavItem Component
 const NavItem = ({ icon: Icon, label, isActive, onClick }) => (
@@ -94,7 +95,8 @@ const getNavItems = {
 const DashboardPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("Home");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { isDarkMode, setIsDarkMode } = useDarkMode();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -109,7 +111,7 @@ const DashboardPage = () => {
   };
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   // ✅ Fix: use navItems() function correctly
@@ -247,6 +249,17 @@ const DashboardPage = () => {
                 <Moon className="w-6 h-6 text-slate-600 cursor-pointer" />
               )}
             </motion.button>
+            {/* <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {isDarkMode ? (
+                <Sun className="w-6 h-6 text-yellow-400 cursor-pointer" />
+              ) : (
+                <Moon className="w-6 h-6 text-slate-600 cursor-pointer" />
+              )}
+            </motion.button> */}
             <motion.button
               className="relative"
               whileHover={{ scale: 1.2 }}
