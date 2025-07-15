@@ -229,7 +229,7 @@ const DashboardPage = () => {
               <Menu className="w-6 h-6" />
             </button>
 
-            <h1 className="text-4xl text-center font-bold text-gray-900 leading-tight relative">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-bold leading-tight text-gray-900 dark:text-white">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">
                 {role} Dashboard
               </span>
