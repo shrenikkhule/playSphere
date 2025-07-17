@@ -7,12 +7,12 @@ const OwnerDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loggedInUser } = useSelector((state) => state.user);
-  const { isDarkMode } = useDarkMode(); // Provides the dark mode toggle state
+  const { isDarkMode } = useDarkMode();
 
   return (
     <div
       className={`min-h-screen px-4 py-6 md:px-10 lg:px-20 transition-colors duration-300 ${
-        isDarkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+        isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
       }`}
     >
       {/* Main Card */}
@@ -33,7 +33,6 @@ const OwnerDashboard = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-snug mb-4">
             Let’s Get Your Turf Game On!
           </h2>
-
           <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
             Seamlessly manage your turf availability, bookings, and performance.
             Keep your venue efficient and players satisfied — all from one
