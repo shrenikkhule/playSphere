@@ -73,8 +73,16 @@ const getNavItems = {
   "turf-owner": [
     { icon: Home, label: "Home", link: "/dashboard/turf owner" },
     { icon: CgProfile, label: "Profile", link: "/dashboard/profile" },
-    { icon: ClipboardList, label: "Manage slots", link: "/dashboard/payments" },
-    { icon: Calendar, label: "Bookings", link: "/dashboard/turf" },
+    {
+      icon: ClipboardList,
+      label: "Manage slots",
+      link: "/dashboard/turf owner/add-venues",
+    },
+    {
+      icon: Calendar,
+      label: "Bookings",
+      link: "/dashboard/turf owner/all-venues",
+    },
     { icon: CreditCard, label: "Payments", link: "/dashboard/turf" },
   ],
   academies: [

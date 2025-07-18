@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
   FaCalendarCheck,
   FaDumbbell,
@@ -8,11 +8,26 @@ import {
 } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import { MdFitnessCenter, MdSportsSoccer } from "react-icons/md";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { cities } from "./data";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slice/UserSlice";
+import ProfileModal from "../Pages/Dashboard/Components/ProfileModel";
 function Template() {
   const [search, setSearch] = useState("");
   const [filteredCities, setFilteredCities] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loggedInUser } = useSelector((state) => state.user);
+  console.log(loggedInUser);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -29,16 +44,18 @@ function Template() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full  text-white shadow-md z-50"
+        className="fixed top-0 left-0 w-full text-white shadow-md z-50"
         style={{
           background:
             "radial-gradient(ellipse 80% 50% at 50% 120%, rgba(62, 61, 117), rgba(18, 18, 38))",
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo & Search */}
-            <div className="flex items-center space-x-4 w-full md:w-auto">
+        {/* Removed px-4 sm:px-6 lg:px-8 from here to allow elements to touch edges */}
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center h-16 relative">
+            {/* LEFT: Logo + Search */}
+            {/* Added pl-4 sm:pl-6 lg:pl-8 to add internal padding, but keeps logo flush left */}
+            <div className="flex items-center space-x-4 pl-4 sm:pl-6 lg:pl-8">
               <Link to="/">
                 <div className="flex items-center space-x-2">
                   <FaMapMarkerAlt className="text-xl text-green-400" />
@@ -48,14 +65,13 @@ function Template() {
                 </div>
               </Link>
 
-              {/* Search Bar */}
               <div className="relative hidden sm:block">
                 <input
                   type="text"
                   value={search}
                   onChange={handleSearchChange}
                   placeholder="Search City"
-                  className="ml-4 px-4 py-1.5 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-green-400 shadow"
+                  className="px-4 py-1.5 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-green-400 shadow"
                 />
                 {filteredCities.length > 0 && (
                   <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-md max-h-48 overflow-auto">
@@ -76,21 +92,22 @@ function Template() {
               </div>
             </div>
 
-            {/* Navigation Links */}
-            <div className="hidden md:flex space-x-8">
-              <Link to={"/find-players"}>
+            {/* CENTER: Nav Links */}
+            {/* Uses absolute positioning for perfect horizontal centering */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center space-x-8">
+              <Link to="/find-players">
                 <span className="hover:text-green-300 font-medium flex items-center gap-1 transition">
                   <FaUsers className="text-base text-green-400" />
                   <span>Find Players</span>
                 </span>
               </Link>
-              <Link to={"/book-venues"}>
+              <Link to="/book-venues">
                 <span className="hover:text-yellow-300 font-medium flex items-center gap-1 transition">
                   <FaCalendarCheck className="text-base text-yellow-400" />
                   <span>Book Venues</span>
                 </span>
               </Link>
-              <Link to={"/trainer"}>
+              <Link to="/trainer">
                 <span className="hover:text-orange-300 font-medium flex items-center gap-1 transition">
                   <FaDumbbell className="text-base text-orange-400" />
                   <span>Train</span>
@@ -98,25 +115,67 @@ function Template() {
               </Link>
             </div>
 
-            {/* Auth Button */}
+            {/* RIGHT: Auth Section */}
+            {/* ml-auto pushes it to the right, and pr- adds internal padding */}
+            <div className="flex gap-4 ">
+              {loggedInUser ? (
+                <div className="flex gap-4">
+                  <div
+                    className="flex items-center cursor-pointer gap-2 px-4 py-2 text-white rounded-lg shadow-md font-semibold"
+                    onClick={toggleModal}
+                  >
+                    <div className="w-9 h-9 rounded-full bg-white text-violet-600 flex items-center justify-center font-bold border-2 border-violet-500">
+                      {loggedInUser.name.charAt(0).toUpperCase()}
+                    </div>
+                    <span className="truncate max-w-[150px]">
+                      Hi {loggedInUser.name}
+                    </span>
+                  </div>
 
-            <div className="flex">
-              {/* <Link
-                to="/register"
-                className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden"
-              >
-                <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
-                <MdSportsSoccer className="text-xl z-10" />
-                <span className="z-10">Sign Up</span>
-              </Link> */}
-              <Link
-                to="/login"
-                className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden"
-              >
-                <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300"></span>
-                <MdSportsSoccer className="text-xl z-10" />
-                <span className="z-10">Login to PlaySphere</span>
-              </Link>
+                  {/* Dashboard Button */}
+                  <Link
+                    // to="/dashboard"
+                    to={`/dashboard/${loggedInUser.role}`}
+                    className="group flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden"
+                  >
+                    <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300" />
+                    <MdSportsSoccer className="text-xl z-10" />
+                    <span className="z-10">Dashboard</span>
+                  </Link>
+
+                  {/* Logout Button */}
+                  <button
+                    onClick={handleLogout}
+                    className="group flex cursor-pointer items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-lg shadow-md transition relative overflow-hidden"
+                  >
+                    <span className="absolute inset-0 opacity-10 blur-md group-hover:opacity-20 transition-all duration-300" />
+                    <MdSportsSoccer className="text-xl z-10" />
+                    <span className="z-10">Logout</span>
+                  </button>
+                </div>
+              ) : (
+                <Link to={"/login"}>
+                  <div className="p-6 flex items-center justify-between">
+                    <div className="flex items-center">
+                      <motion.div
+                        animate={{ rotate: [0, 360] }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="w-6 h-6 rounded-full mr-3"
+                      >
+                        <img
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhjk7qpl0JIoUsadWQz2lyutltpEKFacR_bQ&s"
+                          className="rounded-2xl"
+                        />
+                      </motion.div>
+                      <h1 className="text-">Login to PlaySphere</h1>
+                    </div>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -232,6 +291,18 @@ function Template() {
           © {new Date().getFullYear()} TecSolix. All rights reserved.
         </div>
       </footer>
+      {loggedInUser && (
+        <ProfileModal
+          isOpen={isModalOpen}
+          onClose={toggleModal}
+          userData={loggedInUser}
+          address={loggedInUser.address}
+          gender={loggedInUser.gender}
+          name={loggedInUser.name}
+          phone={loggedInUser.phone}
+          role={loggedInUser.role}
+        />
+      )}
     </>
   );
 }

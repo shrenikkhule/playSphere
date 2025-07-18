@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useDarkMode } from "./Components/DarkModeProvider";
+import { useDarkMode } from "../Components/DarkModeProvider";
 
 const OwnerDashboard = () => {
   const dispatch = useDispatch();

@@ -9,7 +9,7 @@ import { LoaderProvider } from "./LoaderContext";
 import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
 import CoachDashboard from "./Pages/Dashboard/CoachDashboard";
 import PlayerDashboard from "./Pages/Dashboard/PlayerDashboard";
-import OwnerDashboard from "./Pages/Dashboard/OwnerDashboard";
+import OwnerDashboard from "./Pages/Dashboard/TurfOwnwer/OwnerDashboard";
 import AcademyDashboard from "./Pages/Dashboard/AcademyDashboard";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -26,6 +26,8 @@ import {
 } from "./Pages/Index";
 import DashboardPage from "./Pages/Dashboard/DashboardPage";
 import ProfilePage from "./Pages/Dashboard/Components/ProfilePage";
+import AddVenue from "./Pages/Dashboard/TurfOwnwer/AddVenues";
+import AllVenuesDashboard from "./Pages/Dashboard/TurfOwnwer/AllVenues";
 
 function App() {
   // const user = JSON.parse(localStorage.getItem("user"));
@@ -41,6 +43,11 @@ function App() {
           <Route path="dashboard" element={<DashboardPage />}>
             <Route path="admin" element={<AdminDashboard />} />
             <Route path="turf owner" element={<OwnerDashboard />} />
+            <Route path="turf owner/add-venues" element={<AddVenue />} />
+            <Route
+              path="turf owner/all-venues"
+              element={<AllVenuesDashboard />}
+            />
             <Route path="academies" element={<AcademyDashboard />} />
             <Route path="player" element={<PlayerDashboard />} />
             <Route path="coach" element={<CoachDashboard />} />

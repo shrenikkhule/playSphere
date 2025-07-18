@@ -50,7 +50,7 @@ export default function Login() {
           navigate("/dashboard/admin");
           break;
         case "player":
-          navigate("/dashboard/player");
+          navigate("/");
           break;
         case "coach":
           navigate("/dashboard/coach");
