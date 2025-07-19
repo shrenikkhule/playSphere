@@ -7,7 +7,6 @@ import { HiClock, HiMapPin, HiTrophy } from "react-icons/hi2";
 function CardDetails() {
   const { state } = useLocation();
   const venue = state?.venue;
-  console.log(venue);
 
   if (!venue) return <div className="p-4">No venue data found.</div>;
 

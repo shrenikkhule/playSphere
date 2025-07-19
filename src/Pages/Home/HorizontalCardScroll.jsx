@@ -11,7 +11,7 @@ import {
 import { HiOutlineMapPin } from "react-icons/hi2";
 import { MdSportsSoccer } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
 const HorizontalCardScroll = () => {
@@ -52,17 +52,28 @@ const HorizontalCardScroll = () => {
     <>
       <section className="py-10 px-4 sm:px-6 lg:px-12 bg-white">
         <LoadingSpinner loading={loading} />
+        <div className="flex justify-between items-center mb-10">
+          <motion.h2
+            className="text-3xl md:text-4xl font-extrabold text-gray-800"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Book <span className="text-indigo-600">Game Spots</span> Venues
+          </motion.h2>
 
-        <motion.h2
-          className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-10"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Book <span className="text-indigo-600">Game Spots</span> Venues
-        </motion.h2>
+          <motion.h2
+            className="text-xl md:text-xl font-extrabold text-gray-800 cursor-pointer"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Link to={"/book-venues"}>
+              <span className="text-black">View All</span>
+            </Link>
+          </motion.h2>
+        </div>
 
-        {/* Scrollable Cards */}
         <div className="w-full overflow-x-auto px-4 pb-2">
           <div
             ref={scrollRef}
@@ -85,7 +96,6 @@ const HorizontalCardScroll = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  // onClick={() => navigate(`/details/${item._id}`)}
                   onClick={() =>
                     navigate(`/details/${item._id}`, { state: { venue: item } })
                   }
@@ -139,14 +149,28 @@ const HorizontalCardScroll = () => {
         </div>
       </section>
       <section className="py-10 px-4 sm:px-6 lg:px-12 bg-white">
-        <motion.h2
-          className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-10"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Discover <span className="text-indigo-600">Game Spots</span> near you
-        </motion.h2>
+        <div className="flex justify-between items-center mb-10">
+          <motion.h2
+            className="text-3xl md:text-4xl font-extrabold text-gray-800"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Discover <span className="text-indigo-600">Game Spots</span> near
+            you
+          </motion.h2>
+
+          <motion.h2
+            className="text-xl md:text-xl font-extrabold text-gray-800 cursor-pointer"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Link to={"/book-venues"}>
+              <span className="text-black">View All</span>
+            </Link>
+          </motion.h2>
+        </div>
 
         {/* Scroll Buttons Under the Cards */}
         <div className="w-full overflow-x-auto px-4 pb-2">

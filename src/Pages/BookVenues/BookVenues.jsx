@@ -77,8 +77,8 @@ function BookVenues() {
               </span>
             </button>
           </Link>
-          <Outlet />
         </motion.div>
+          <Outlet />
       </div>
       <SportsComplexesPage></SportsComplexesPage>
     </>
