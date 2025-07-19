@@ -38,27 +38,6 @@ export default function HeroSection() {
             </a>
           </div>
         </motion.div>
-
-        {/* Right Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          <motion.img
-            src="/pngfind.com-basketball.png"
-            alt="Sports Illustration"
-            className="w-42 h-56 lg:hidden block"
-            whileHover={{ scale: 1.05 }}
-            animate={{ y: [0, -30, 0] }} // Increased jump height
-            transition={{
-              repeat: Infinity,
-              duration: 2, // Faster animation
-              ease: "easeInOut",
-              repeatType: "loop",
-            }}
-          />
-        </motion.div>
       </div>
     </section>
   );

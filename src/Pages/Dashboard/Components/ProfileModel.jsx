@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { logout } from "../../../redux/slice/UserSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const ProfileModal = ({
   isOpen,
@@ -20,7 +23,12 @@ const ProfileModal = ({
     gender: gender,
     role: role,
   };
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -131,6 +139,12 @@ const ProfileModal = ({
             <p className="text-sm font-medium bg-gradient-to-r from-blue-400 to-purple-500 text-white px-4 py-1 rounded-full shadow">
               {userData.role} Profile
             </p>
+            <button
+              className="text-sm mt-4 font-medium bg-gradient-to-r from-red-400 to-purple-500 text-white px-4 py-1 rounded-full shadow cursor-pointer"
+              onClick={handleLogout}
+            >
+              logout
+            </button>
           </div>
 
           {/* Info Cards */}

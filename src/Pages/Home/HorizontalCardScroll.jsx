@@ -1,9 +1,34 @@
 import { motion } from "framer-motion";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { scrolldata } from "./data";
 import VanillaTilt from "vanilla-tilt";
+import axios from "axios";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaLocationArrow,
+  FaRegClock,
+} from "react-icons/fa";
+import { HiOutlineMapPin } from "react-icons/hi2";
+import { MdSportsSoccer } from "react-icons/md";
+
 const HorizontalCardScroll = () => {
+  const [venues, setVenues] = useState([]);
+
+  useEffect(() => {
+    const fetchVenues = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/venues");
+        setVenues(res.data);
+      } catch (err) {
+        console.error("Error fetching venues:", err);
+      }
+    };
+
+    fetchVenues();
+  }, []);
+  console.log(venues);
+
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +40,7 @@ const HorizontalCardScroll = () => {
       "max-glare": 0.2,
     });
   }, []);
+  console.log(venues);
 
   return (
     <>
@@ -29,32 +55,59 @@ const HorizontalCardScroll = () => {
         </motion.h2>
 
         {/* Scrollable Cards */}
-        <div
-          ref={scrollRef}
-          className="flex space-x-5 overflow-x-auto scroll-smooth no-scrollbar pb-2 px-4"
-        >
-          {scrolldata.map((item, idx) => (
-            <motion.div
-              key={idx}
-              className="tilt-card group min-w-[240px] sm:min-w-[260px] bg-gradient-to-tr from-white to-indigo-50 rounded-2xl shadow-lg hover:shadow-indigo-400 transition-all duration-300 flex-shrink-0 overflow-hidden border border-transparent hover:border-indigo-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-            >
-              <img
-                src={item.img}
-                alt={`Ground ${idx + 1}`}
-                className="w-full h-40 object-cover rounded-t-2xl"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600 mt-1">{item.address}</p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="w-full overflow-x-auto px-4 pb-2">
+          <div
+            ref={scrollRef}
+            className="flex gap-5 scroll-smooth no-scrollbar"
+            style={{
+              minWidth: "1500px", // 5 cards * 300px each = 1500px min-width
+            }}
+          >
+            {venues.map((item, idx) => {
+              const imageName = item.images?.[0]?.split("\\").pop();
+              const imageUrl = imageName
+                ? `http://localhost:5000/uploads/venues/${imageName}`
+                : "https://via.placeholder.com/400x250?text=No+Image";
+
+              return (
+                <motion.div
+                  key={item._id}
+                  className="min-w-[300px] max-w-[300px] bg-white rounded-2xl shadow-lg hover:shadow-indigo-400 border hover:border-indigo-300 overflow-hidden transition-all duration-300 flex-shrink-0 flex flex-col"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                >
+                  <img
+                    src={imageUrl}
+                    alt={item.name}
+                    className="h-48 w-full object-cover"
+                  />
+
+                  <div className="p-4 flex flex-col gap-2">
+                    <h2 className="text-xl font-bold text-indigo-700">
+                      {item.name}
+                    </h2>
+                    <p className="text-gray-600 text-sm flex items-center gap-1">
+                      📍 <span className="font-medium">{item.address}</span>
+                    </p>
+                    <p className="text-gray-600 text-sm flex items-center gap-1">
+                      🕒 <span className="font-medium">{item.timing}</span>
+                    </p>
+                    <p className="text-gray-600 text-sm flex items-center gap-1">
+                      🏅{" "}
+                      <span className="font-medium">
+                        {item.sportsAvailable.join(", ")}
+                      </span>
+                    </p>
+                    <p className="text-sm text-gray-500 italic">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Scroll Buttons Under the Cards */}
@@ -83,32 +136,73 @@ const HorizontalCardScroll = () => {
           Discover <span className="text-indigo-600">Game Spots</span> near you
         </motion.h2>
 
-        {/* Scrollable Cards */}
-        <div
-          ref={scrollRef}
-          className="flex space-x-5 overflow-x-auto scroll-smooth no-scrollbar pb-2"
-        >
-          {scrolldata.map((item, idx) => (
-            <motion.div
-              key={idx}
-              className="relative group min-w-[240px] sm:min-w-[260px] bg-gradient-to-tr from-white to-indigo-50 rounded-2xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300 flex-shrink-0 overflow-hidden"
-            >
-              <img
-                src={item.img}
-                alt={`Ground ${idx + 1}`}
-                className="w-full h-40 object-cover rounded-t-2xl"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600 mt-1">{item.address}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Scroll Buttons Under the Cards */}
+        <div className="w-full overflow-x-auto px-4 pb-2">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 scroll-smooth no-scrollbar"
+            style={{ minWidth: "1500px" }}
+          >
+            {venues.map((item, idx) => {
+              const imageName = item.images?.[0]?.split("\\").pop();
+              const imageUrl = imageName
+                ? `http://localhost:5000/uploads/venues/${imageName}`
+                : "https://via.placeholder.com/400x250?text=No+Image";
+
+              return (
+                <motion.div
+                  key={item._id}
+                  className="min-w-[300px] max-w-[300px] h-[370px] flex-shrink-0 bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                >
+                  {/* Image Section */}
+                  <div className="relative h-44 w-full flex-shrink-0">
+                    <img
+                      src={imageUrl}
+                      alt={item.name}
+                      className="h-full w-full object-cover rounded-t-xl"
+                    />
+                    <span className="absolute top-2 right-2 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full shadow-md">
+                      Featured
+                    </span>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-4 flex flex-col gap-1 overflow-hidden flex-grow">
+                    <h3 className="text-base font-semibold text-indigo-700 flex items-center gap-2 truncate">
+                      <HiOutlineMapPin className="text-indigo-500 text-lg" />
+                      {item.name}
+                    </h3>
+
+                    <div className="text-sm text-gray-600 flex items-center gap-2 truncate">
+                      <FaLocationArrow className="text-indigo-400 text-sm" />
+                      <span>{item.address}</span>
+                    </div>
+
+                    <div className="text-sm text-gray-600 flex items-center gap-2 truncate">
+                      <FaRegClock className="text-indigo-400 text-sm" />
+                      <span>{item.timing}</span>
+                    </div>
+
+                    <div className="text-sm text-gray-600 flex items-center gap-2 truncate">
+                      <MdSportsSoccer className="text-indigo-400 text-base" />
+                      <span className="truncate">
+                        {item.sportsAvailable.join(", ")}
+                      </span>
+                    </div>
+
+                    <p className="text-xs text-gray-500 italic mt-1 overflow-hidden line-clamp-2">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
         <div className="mt-6 flex justify-center gap-4">
           <button
             onClick={() => scroll("left")}

@@ -257,17 +257,6 @@ const DashboardPage = () => {
                 <Moon className="w-6 h-6 text-slate-600 cursor-pointer" />
               )}
             </motion.button>
-            {/* <motion.button
-              onClick={toggleTheme}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {isDarkMode ? (
-                <Sun className="w-6 h-6 text-yellow-400 cursor-pointer" />
-              ) : (
-                <Moon className="w-6 h-6 text-slate-600 cursor-pointer" />
-              )}
-            </motion.button> */}
             <motion.button
               className="relative"
               whileHover={{ scale: 1.2 }}
