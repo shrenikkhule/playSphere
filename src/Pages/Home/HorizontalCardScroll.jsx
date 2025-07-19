@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { scrolldata } from "./data";
 import VanillaTilt from "vanilla-tilt";
 import axios from "axios";
 import {
@@ -11,23 +10,31 @@ import {
 } from "react-icons/fa";
 import { HiOutlineMapPin } from "react-icons/hi2";
 import { MdSportsSoccer } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const HorizontalCardScroll = () => {
   const [venues, setVenues] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchVenues = async () => {
+      setLoading(true);
       try {
         const res = await axios.get("http://localhost:5000/api/venues");
         setVenues(res.data);
       } catch (err) {
         console.error("Error fetching venues:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchVenues();
   }, []);
-  console.log(venues);
 
   const scrollRef = useRef(null);
 
@@ -40,11 +47,12 @@ const HorizontalCardScroll = () => {
       "max-glare": 0.2,
     });
   }, []);
-  console.log(venues);
 
   return (
     <>
       <section className="py-10 px-4 sm:px-6 lg:px-12 bg-white">
+        <LoadingSpinner loading={loading} />
+
         <motion.h2
           className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-10"
           initial={{ opacity: 0, y: -30 }}
@@ -60,7 +68,7 @@ const HorizontalCardScroll = () => {
             ref={scrollRef}
             className="flex gap-5 scroll-smooth no-scrollbar"
             style={{
-              minWidth: "1500px", // 5 cards * 300px each = 1500px min-width
+              minWidth: "1500px",
             }}
           >
             {venues.map((item, idx) => {
@@ -72,11 +80,15 @@ const HorizontalCardScroll = () => {
               return (
                 <motion.div
                   key={item._id}
-                  className="min-w-[300px] max-w-[300px] bg-white rounded-2xl shadow-lg hover:shadow-indigo-400 border hover:border-indigo-300 overflow-hidden transition-all duration-300 flex-shrink-0 flex flex-col"
+                  className="min-w-[300px] max-w-[300px] cursor-pointer bg-white rounded-2xl shadow-lg hover:shadow-indigo-400 border hover:border-indigo-300 overflow-hidden transition-all duration-300 flex-shrink-0 flex flex-col"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  // onClick={() => navigate(`/details/${item._id}`)}
+                  onClick={() =>
+                    navigate(`/details/${item._id}`, { state: { venue: item } })
+                  }
                 >
                   <img
                     src={imageUrl}
@@ -157,6 +169,9 @@ const HorizontalCardScroll = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  onClick={() =>
+                    navigate(`/details/${item._id}`, { state: { venue: item } })
+                  }
                 >
                   {/* Image Section */}
                   <div className="relative h-44 w-full flex-shrink-0">
@@ -166,7 +181,7 @@ const HorizontalCardScroll = () => {
                       className="h-full w-full object-cover rounded-t-xl"
                     />
                     <span className="absolute top-2 right-2 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full shadow-md">
-                      Featured
+                      Around You
                     </span>
                   </div>
 

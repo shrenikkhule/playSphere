@@ -28,6 +28,8 @@ import DashboardPage from "./Pages/Dashboard/DashboardPage";
 import ProfilePage from "./Pages/Dashboard/Components/ProfilePage";
 import AddVenue from "./Pages/Dashboard/TurfOwnwer/AddVenues";
 import AllVenuesDashboard from "./Pages/Dashboard/TurfOwnwer/AllVenues";
+import CardDetails from "./Pages/Home/CardDetails";
+import ScrollToTop from "./Pages/Components/ScrollToTop";
 
 function App() {
   // const user = JSON.parse(localStorage.getItem("user"));
@@ -35,6 +37,7 @@ function App() {
   return (
     <LoaderProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
@@ -58,6 +61,7 @@ function App() {
           <Route path="/" element={<Template />}>
             <Route index element={<HomePage />} />
             <Route path="find-players" element={<FindPlayers />} />
+            <Route path="/details/:id" element={<CardDetails />} />
             <Route path="book-venues" element={<BookVenues />}>
               <Route index element={<AllVenues />} />
               <Route path="all" element={<Venues />} />

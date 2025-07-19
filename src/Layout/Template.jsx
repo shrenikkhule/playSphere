@@ -22,7 +22,6 @@ function Template() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loggedInUser } = useSelector((state) => state.user);
-  console.log(loggedInUser);
 
   const handleLogout = () => {
     dispatch(logout());
