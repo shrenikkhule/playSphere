@@ -2,6 +2,13 @@ import mongoose from "mongoose";
 
 const TrainerSchema = new mongoose.Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // optional: depends on your user model
+      required: true,
+      unique: true, // ✅ This ensures only ONE profile per user
+    },
+
     name: { type: String, required: true },
     address: { type: String, required: true },
     classesFor: { type: String, required: true },
@@ -9,7 +16,9 @@ const TrainerSchema = new mongoose.Schema(
     aboutcoach: { type: String, required: true },
     description: { type: String },
     certifications: { type: String },
-    images: [String],
+
+    images: [String], // stored paths or URLs
+
     weeklyAvailability: {
       monday: { type: Boolean, default: false },
       tuesday: { type: Boolean, default: false },
