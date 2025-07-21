@@ -107,7 +107,7 @@ function Template() {
             <Link to="/trainer">
               <span className="hover:text-orange-300 font-medium flex items-center gap-1 transition">
                 <FaDumbbell className="text-base text-orange-400" />
-                <span>Train</span>
+                <span>Trainer</span>
               </span>
             </Link>
           </div>

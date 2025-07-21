@@ -7,7 +7,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import { LoaderProvider } from "./LoaderContext";
 import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
-import CoachDashboard from "./Pages/Dashboard/CoachDashboard";
+import CoachDashboard from "./Pages/Dashboard/Trainer/CoachDashboard";
 import PlayerDashboard from "./Pages/Dashboard/PlayerDashboard";
 import OwnerDashboard from "./Pages/Dashboard/TurfOwnwer/OwnerDashboard";
 import AcademyDashboard from "./Pages/Dashboard/AcademyDashboard";
@@ -30,6 +30,7 @@ import AddVenue from "./Pages/Dashboard/TurfOwnwer/AddVenues";
 import AllVenuesDashboard from "./Pages/Dashboard/TurfOwnwer/AllVenues";
 import CardDetails from "./Pages/Home/CardDetails";
 import ScrollToTop from "./Pages/Components/ScrollToTop";
+import TrainerProfileForm from "./Pages/Dashboard/Trainer/TrainerProfileForm";
 
 function App() {
   // const user = JSON.parse(localStorage.getItem("user"));
@@ -54,6 +55,10 @@ function App() {
             <Route path="academies" element={<AcademyDashboard />} />
             <Route path="player" element={<PlayerDashboard />} />
             <Route path="coach" element={<CoachDashboard />} />
+            <Route
+              path="coach/create-profile"
+              element={<TrainerProfileForm />}
+            />
             <Route path="profile" element={<ProfilePage />} />
           </Route>
 
@@ -70,7 +75,7 @@ function App() {
             </Route>
             <Route path="trainer" element={<Trainer />}></Route>
             <Route
-              path="trainer/trainer-details"
+              path="/trainer-details/:id"
               element={<TrainerDetails />}
             ></Route>
           </Route>

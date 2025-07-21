@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaCalendarAlt, FaChartLine, FaUserFriends } from "react-icons/fa";
-import { useDarkMode } from "./Components/DarkModeProvider";
+import { useDarkMode } from "../Components/DarkModeProvider";
 
 const cardData = [
   {

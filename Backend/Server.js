@@ -6,6 +6,7 @@ import UserRoutes from "./routes/UserRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import VenueRoutes from "./routes/VenueRoutes.js";
+import TrainerRoutes from "./routes/TrainerRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +20,11 @@ app.use(express.json());
 app.use("/api/users", UserRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 app.use("/api", VenueRoutes);
+
+// ✅ Routes
+app.use("/api/trainers", TrainerRoutes);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {

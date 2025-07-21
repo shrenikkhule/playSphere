@@ -63,14 +63,14 @@ const getNavItems = {
     { icon: CgProfile, label: "Profile", link: "/dashboard/profile" },
     {
       icon: ClipboardList,
-      label: "Manage sessions",
-      link: "/dashboard/coach/earnings",
+      label: "Create Profile for Website",
+      link: "/dashboard/coach/create-profile",
     },
     { icon: DollarSign, label: "Track earnings", link: "/dashboard/coach/crm" },
     { icon: FileCheck, label: "Get bookings", link: "/dashboard/coach/crm" },
     { icon: FileText, label: "Use CRM", link: "/dashboard/coach/crm" },
   ],
-  "turf-owner": [
+  "turf owner": [
     { icon: Home, label: "Home", link: "/dashboard/turf owner" },
     { icon: CgProfile, label: "Profile", link: "/dashboard/profile" },
     {
